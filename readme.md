@@ -75,8 +75,32 @@ activar('Gordon', 'tarde');
 ```
 
 
+### Funciones
 
-`
+Se puede especificar el tipo de dato que retorna la función.
+
+```typescript
+function sumar(a: number, b: number): number {
+    return a + b;
+}
+
+interface PersonajeLOR {
+    nombre: string;
+    pv: number;
+}
+
+function sumar(personaje: PersonajeLOR, curarX: number): void {
+    personaje.pv += curarX;
+    console.log( personaje );
+}
+
+const nuevoPersonaje: PersonajeLOR = {
+    nombre: 'marco';
+    pv: 50;
+}    
+curar( nuevoPersonaje, 50);
+```
+
 
 ### Funciones flecha
 
@@ -84,17 +108,17 @@ Es una nueva forma de escribir las funciones en ES6 (EcmaScript2015), pero con l
 
 
 ```typescript
-const miFuncion = function(a: string){
+const miFuncion = function(a: string): string{
     return a.toUpperCase;
 }
 
-const miFuncionFlecha = (a: string) => a.toUpperCase;
+const miFuncionFlecha = (a: string): string => a.toUpperCase;
 
 const sumarN = function(a: number, b: number){
     return a+b;
 }
 
-const sumarNF = (a: number, b: number) => a+b;
+const sumarNF = (a: number, b: number): number => a+b;
 
 const hulk = {
     nombre: 'Hulk',
@@ -193,10 +217,17 @@ interface Xmen {
     nombre: string;
     edad: number;
     poder?: string;
+    mostrarNombreEdad: () => void;
+    direccion: IDireccion;
+    mostrarDireccion: () => string;
+}
+
+interface IDireccion {
+    calle: string:
+    ciudad: string;
 }
 
 const enviarMision = ( xmen: Xmen ) => {
-
     console.log(`Enviando a ${xmen.nombre} a la mision`);
 } 
 const regresarAlCuartel = ( xmen: Xmen ) => {
@@ -206,6 +237,16 @@ const regresarAlCuartel = ( xmen: Xmen ) => {
 const wolverine = {
     nombre: 'Logan',
     edad: 60
+    mostrarNombreEdad() {
+        console.log( 'Su nombres es ${this.nombre} y edad ${this.edad} );
+    }
+    direccion: {
+        calle: 'av las americas',
+	ciudad: 'santa cruz'
+    }
+    mostrarDireccion() {
+        return this.direccion.calle + ', ' + this.direccion.ciudad;
+    }
 }
 
 enviarMision(wolverine);
